@@ -4,9 +4,7 @@ const faker = require("faker"); // faker is used for generating random fake data
 const _ = require("lodash"); // lodash is a utility lib for Javascript
 
 const users = generateUsers(10);
-
 export const contacts = _.mapKeys(users, "user_id");
-
 export const getMessages = messagesPerUser => {
     let messages = {};
     _.forEach(users, user => {
@@ -31,9 +29,15 @@ export const state = {
  */
 export function generateUser() {
     return {
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        profile_pic: faker.internet.avatar(),
+        name: faker
+            .name
+            .findName(),
+        email: faker
+            .internet
+            .email(),
+        profile_pic: faker
+            .internet
+            .avatar(),
         status: txtgen.sentence(),
         user_id: shortid.generate()
     };
@@ -45,7 +49,9 @@ function generateMsg(number) {
     return {
         number,
         text: txtgen.sentence(),
-        is_user_msg: faker.random.boolean()
+        is_user_msg: faker
+            .random
+            .boolean()
     };
 }
 /**
@@ -55,9 +61,13 @@ function generateMsg(number) {
  * @returns {Array} - an array of user objects with length n = numberOfUsers
  */
 function generateUsers(numberOfUsers) {
-    return Array.from({ length: numberOfUsers }, () => generateUser());
+    return Array.from({
+        length: numberOfUsers
+    }, () => generateUser());
 }
 
 function generateMsgs(numberOfMsgs) {
-    return Array.from({ length: numberOfMsgs }, (v, i) => generateMsg(i));
+    return Array.from({
+        length: numberOfMsgs
+    }, (v, i) => generateMsg(i));
 }
